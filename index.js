@@ -32,7 +32,7 @@ function downloadImage(imageParam, access_token) {
 
 function downloadImages(imageParamList, access_token) {
     console.log("Log from downloadImages()")
-    // imageParamList.forEach(imageParam => downloadImage(imageParam, access_token));
+    imageParamList.forEach(imageParam => downloadImage(imageParam, access_token));
     let desc= ["Auckaland - Tamaki Drivew View","Auckalnd - Sea View from Hill at Devenport","Pahia - Sun Rise in Clear Sky","Paihia - Cruising at Bay of Island","Paihia - Russel Island View","Paihia - Russel Island","Paihia - The Hole in Rock","Paihia - Way Back from Haruru Water Fall","Raglan - Girl with Surf Board","Rotorua - City Lake View","Rotorua - Morning Walk (2)","Rotorua - Morning Walk (3)","Wellington - Botanic Garden","Rotorua - Morning Walk (4)","Rotorua - Morning Walk","Rotorua - Redwood Forest","Rotorua - Sunset on Sunny Day","Rotorua- Way Back from Hell's Geo-Thermal Reserve","Taupo - On the Way to Huka Fall Trail","Taupo - Taupo Lake","Taupo - Waikato River","The Moon - Day View (Canon Sx70 X65 Optical Zoom)","Cambridge - Random Walk","Wellington - Pukera Bay","Wellington - Shades after Showers","Wellington - Trees at Zealandia","Whangrei - The Whangrei Fall","Hamilton - Frankton Random Walk (2)","Hamilton - Frankton Random Walk","Hamilton - Glenview Fiztroy Garden","Hamilton - Glenview Random Walk (2)","Hamilton - Glenview Random Walk","Hamilton - Karapiro Lake View (2)","Hamilton - Karapiro Lake View","Hamilton - Road at Glenview","Auckland - City View from Taraki Drive","Auckland - Devenport Island View","Auckland - Devenport Random Walk","Auckland - KingFisher at Devenport","Auckland - Sky City from Devnport Hill","Auckland - Sky Tower behind The Wharf","Auckland - View From Way To Island Waiheke","Hamilton - Random Walk","Full Moon - Night View (Canon Sx70 X65 Optical Zoom)"];
     for(var i=0; i<imageParamList.length; i++) {
         const imgDiv = document.createElement('div')
@@ -129,37 +129,4 @@ function launchOneDrivePicker() {
         error: function (e) { /* error handler */ },
     };
     OneDrive.open(odOptions);
-}
-
-function fectchAjax() {
-    var createCORSRequest = function(method, url) {
-        var xhr = new XMLHttpRequest();
-        if ("withCredentials" in xhr) {
-          // Most browsers.
-          xhr.open(method, url, true);
-        } else if (typeof XDomainRequest != "undefined") {
-          // IE8 & IE9
-          xhr = new XDomainRequest();
-          xhr.open(method, url);
-        } else {
-          // CORS not supported.
-          xhr = null;
-        }
-        return xhr;
-      };
-      
-      var url = 'https://graph.microsoft.com/v1.0/me/drive/root/children';
-      var method = 'GET';
-      var xhr = createCORSRequest(method, url);
-      
-      xhr.onload = function() {
-        console.log("Ajax call success");
-      };
-      
-      xhr.onerror = function() {
-        console.log("Ajax call failure")
-      };
-      
-      xhr.setRequestHeader('Authorization', 'Bearer access_token_value');
-      xhr.send();
 }
